@@ -82,7 +82,7 @@ func aim(mouseEvent: InputEventMouseMotion):
 	head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 
 func shoot():
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		var bullet = bulletScn.instance()
 		bullet.global_transform = shootPosition.global_transform
 		bullet.scale = Vector3.ONE
