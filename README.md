@@ -1,0 +1,1 @@
+A Simple FPS (First person Shooter) game I did in Godot for learning purposes. Feel free to copy and learn from it as I did.
