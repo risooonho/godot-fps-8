@@ -1,9 +1,11 @@
 extends KinematicBody
 
-var speed = 5
+var defaultSpeed = 5
+var speed = 0
 var acceleration = 20
 var gravity = 9.8
 var jumpHeight = 5
+var running 
 
 var mouseSensitivity = 0.2
 
@@ -22,6 +24,7 @@ func _process(delta):
 	direction = Vector3()
 	quit_game()
 	apply_gravity(delta)
+	run()
 	jump()
 	move()
 	shoot()
@@ -40,6 +43,15 @@ func apply_movement(delta):
 func lock_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+func run():
+	if not Input.is_action_pressed("run"):
+		speed = defaultSpeed
+		running = false
+	else:
+		speed = defaultSpeed * 2
+		running = true
+	var moveSpeed = speed if not Input.is_action_pressed("run") else speed * 2
 
 func move():
 	if Input.is_action_pressed("move_forward"):
@@ -61,7 +73,7 @@ func apply_gravity(delta):
 		fall.y -= gravity * delta
 
 func jump():
-	if Input.is_action_just_pressed("jumpHeight"):
+	if Input.is_action_just_pressed("jump"):
 		fall.y = jumpHeight
 
 func aim(mouseEvent: InputEventMouseMotion):

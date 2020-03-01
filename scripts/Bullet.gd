@@ -1,7 +1,7 @@
 extends Area
 
 var damage = 30
-var speed = 20
+var speed = 25
 
 onready var lifeTime = $LifeTime
 
