@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/materials/Player.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/Gun.tres" type="Material" id=3]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.352941, 0.352941, 0.403922, 1 )
@@ -15,11 +16,13 @@ mid_height = 1.5
 radius = 0.5
 height = 1.5
 
+[sub_resource type="CubeMesh" id=4]
+
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
 script = ExtResource( 1 )
 
-[node name="CSGMesh" type="CSGMesh" parent="."]
+[node name="Body" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.000832319, 0.00973225, 1.09673e-05 )
 mesh = SubResource( 2 )
 material = ExtResource( 2 )
@@ -32,3 +35,20 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.779606, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+current = true
+
+[node name="Gun" type="CSGMesh" parent="Head/Camera"]
+transform = Transform( -1.1508e-08, 0, 0.0718071, 0, 0.166515, 0, -0.0706354, 0, -1.16989e-08, 0.751533, -0.571524, -0.934949 )
+mesh = SubResource( 4 )
+material = ExtResource( 3 )
+
+[node name="GunBarrel" type="CSGMesh" parent="Head/Camera/Gun"]
+transform = Transform( 2.57013, 0, 0, 0, 0.497271, 0, 0, 0, 1, 1.76982, 0.546802, 0 )
+mesh = SubResource( 4 )
+material = ExtResource( 3 )
+
+[node name="ShootPosition" type="Position3D" parent="Head/Camera/Gun"]
+transform = Transform( 1, 0, -4.26326e-14, 0, 1, 0, -5.68434e-14, 0, 1, 5.74747, 0.577578, 0 )
+__meta__ = {
+"_edit_group_": true
+}
