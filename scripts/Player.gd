@@ -41,8 +41,8 @@ func apply_movement(delta):
 	move_and_slide(fall, Vector3.UP)
 	
 func lock_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func run():
 	if not Input.is_action_pressed("run"):
